@@ -28,7 +28,7 @@ void NON(
 	}
 	else
 	{
-		printf("\t- J%d (team %d) mort\n", shipID);
+		printf("\t- J%d (team %d) mort\n", shipID, info->equipe[shipID]);
 	}
 }
 
@@ -55,10 +55,7 @@ int bouge (
 		}
 		
 	}
-	else
-	{
-		return 0;
-	}
+	return 0;
 }
 
 coord_t calcul_moveVec(coord_t maPos, coord_t maTarget) {
@@ -184,6 +181,7 @@ void* MOV(
 
 		}
 	}
+	return NULL;
 }
 
 void* ATK(
@@ -353,6 +351,7 @@ void* ATK(
 		NON(info, shipID, m);
 		m->maTarget = to_coord(-1, -1);
 	}
+	return NULL;
 }
 
 void* SCN (void* arg) {
@@ -364,8 +363,8 @@ void* SCN (void* arg) {
 	
 	s->info->shipKerosen[s->m->monID] -= 3;
 	
-	int i, k;
-	int nbShipsTrouver, distance, id = -1, rd, cp = 0;
+	int k;
+	int nbShipsTrouver = 0, id = -1;
 	int* list = NULL;
 	int dist = s->info->nmap->size.x + s->info->nmap->size.y + 1;
 	
@@ -402,6 +401,7 @@ void* SCN (void* arg) {
 		s->m->dist = -1;
 		printf(" aucun joueur trouvé\n");
 	}
+	return NULL;
 }
 
 void* RPR (void* arg) {
@@ -423,6 +423,7 @@ void* RPR (void* arg) {
 		printf("\t- J%d (team %d)    RPR (%d,%d) ->", s->m->monID, s->info->equipe[shipID],  s->info->nmap->shipPosition[shipID].x, s->info->nmap->shipPosition[shipID].y);
 		printf(" J%d (team %d) %3.d C\n", s->m->monID, s->info->equipe[shipID], s->info->shipCoque [shipID]);
 	}
+	return NULL;
 }
 
 void* BST (
@@ -533,5 +534,5 @@ void* BST (
 				//UNLOCK
 		}
 	}
-		
+	return NULL;
 }
