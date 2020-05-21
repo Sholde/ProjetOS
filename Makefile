@@ -20,7 +20,7 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	
 clean:
 	@ rm -rf ${OBJDIR}/
-	@ rm ${EXE}
+	@ rm -f ${EXE}
 
 conf:
 	@ mkdir obj 2> /dev/null
